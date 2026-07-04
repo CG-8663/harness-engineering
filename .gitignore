@@ -1,0 +1,21 @@
+# run artifacts
+lfd-run-*/
+*-run-*/
+GOAL.md
+*.local.md
+
+# secrets — never commit keys
+.env
+*.key
+*_token
+secrets/
+
+# eval answer keys (keep them private / blind)
+eval/hidden*
+eval/*.key
+
+# os / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
