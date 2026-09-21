@@ -12,3 +12,7 @@ The README now leads with a four-step context-efficiency flow. Command syntax wa
 against Claude Code 2.1.278, Grok 1.0.34, and OpenCode 1.18.31. Savings are presented as
 evaluation bands rather than guarantees, and contributors are asked to include quality,
 privacy, version, measurement, and rollback evidence in feedback.
+
+Public positioning is now explicit: Harness Engineering with Jev for efficient agent
+usage. Jev provides a bounded typed judgment while deterministic code and the native
+harness retain control.

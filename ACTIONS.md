@@ -10,3 +10,5 @@ Append-only record of material repository changes.
 - Linked the guide from the repository README.
 - Expanded the README with verified Claude Code, Grok, OpenCode, and Codex launch flows,
   measurable savings bands, and a structured request for issue and pull-request feedback.
+- Clarified that the project is a harness control layer around existing agents, not a
+  model, proxy, agent replacement, or context executor.

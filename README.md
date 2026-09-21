@@ -1,4 +1,7 @@
-# harness-engineering — Agentic Loops & Goals Management
+# harness-engineering
+
+**Harness Engineering with Jev for efficient agent usage, agentic loops, and measurable
+goal management.**
 
 A growing collection of **agentic loops** and **goal/loss-function harnesses** for AI
 engineering. Each loop here is a self-contained, runnable pattern for putting a coding
@@ -31,6 +34,11 @@ and which cheap shortcuts you fence off so the agent can't cheat the metric.
 | _more coming_ | Add your own — see [CONTRIBUTING](CONTRIBUTING.md). | |
 
 ## Cut agent context usage
+
+> **This is Harness Engineering with Jev for efficient agent usage.** It is a small,
+> tested control layer around your existing agent. It is not another model, agent, proxy,
+> or replacement for Claude Code, Grok, OpenCode, or Codex. Your native harness still
+> owns the session and performs every approved context action.
 
 The [portable Jev context-budget hook](docs/context-budget-hook.md) helps Claude Code,
 Grok, OpenCode, Codex, and other agent harnesses decide when to retain a session, compact
