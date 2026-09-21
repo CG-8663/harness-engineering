@@ -14,3 +14,7 @@ Append-only record of material repository changes.
   model, proxy, agent replacement, or context executor.
 - Added the exact cross-harness installation request directly to README step 3 so users
   can review what the agent is being asked to change before running it.
+- Added repository governance requiring Jev to remain the first intelligent context hook,
+  after local deterministic safety checks.
+- Added a public context-savings ledger and pull-request checklist. No paired production
+  benchmark exists yet, so savings remain explicitly unclaimed and benchmark pending.

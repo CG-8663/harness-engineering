@@ -48,6 +48,10 @@ Deterministic code owns hard limits, privacy, validation, and execution. Jev see
 small telemetry buckets and supplies one typed choice inside the ambiguous middle band.
 Prompts, transcripts, source code, paths, command text, and credentials remain local.
 
+**Hook order:** local deterministic privacy and hard-limit checks run first. Jev is then
+the **first intelligent hook**. Any other semantic or model-backed context processor runs
+after Jev. The native harness remains the only component that executes a context action.
+
 ### 1. Clone the project
 
 ```bash
@@ -163,6 +167,8 @@ Static cleanup often matters more than routing. Measure three stages separately:
 Do not claim a saving from one run. Use at least 20 representative tasks per
 configuration and reject any result that lowers the task success rate beyond your chosen
 tolerance. See the [full implementation and measurement guide](docs/context-budget-hook.md).
+Measured results and benchmark-pending releases are published in the
+[Jev context and compaction savings ledger](docs/context-savings.md).
 
 ### PR feedback wanted
 

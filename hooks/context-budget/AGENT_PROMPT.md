@@ -25,6 +25,12 @@ Requirements:
    Report medians and p95 values. Do not claim savings from a single run.
 9. Report the exact files changed, native event used, rollback steps, and any capability
    the harness does not support.
+10. Register Jev as the first semantic or model-backed context hook. Only local
+    deterministic schema validation, privacy filtering, arithmetic, and hard-limit checks
+    may run before it.
+11. Update `docs/context-savings.md` with paired measurements, or retain `benchmark
+    pending` when no valid comparison exists. Never publish an estimated saving as
+    measured.
 
 First identify unused skills, commands, instruction duplication, and MCP schemas in this
 project's startup scope. Narrow project-local configuration reversibly before adding the

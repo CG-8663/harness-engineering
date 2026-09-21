@@ -20,3 +20,9 @@ harness retain control.
 Step 3 now includes the important agent request inline instead of exposing only harness
 commands. The prompt covers native hook discovery, deterministic ownership, Jev privacy,
 test-first adapter work, no-spend validation, measurement, reversibility, and scope.
+
+The repository now has a durable update contract in `AGENTS.md`. Jev is the first
+intelligent context hook, but local deterministic privacy validation and hard safety
+limits remain ahead of every external call. `docs/context-savings.md` is the public
+append-only measurement ledger. The initial entry says benchmark pending because there
+is no paired production result from which to calculate a truthful saving.

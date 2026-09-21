@@ -47,3 +47,11 @@ Add a row to the table in the top-level [`README.md`](README.md) so people can f
 - Bash loops: `set -euo pipefail`, absolute-safe, config via env with defaults.
 - Never bake secrets or API keys into files. Use disposable keys and hard dollar caps.
 - Keep the ethics line: loops target **publicly** findable artifacts only.
+
+## Context-budget hook changes
+
+Read `AGENTS.md` before changing the hook, adapters, thresholds, installation prompt, or
+measurement claims. Jev must remain the first intelligent hook after local deterministic
+privacy and hard-limit checks. Update `docs/context-savings.md` in the same pull request,
+including benchmark-pending changes. Use the pull-request checklist and never claim token
+savings without paired task and quality evidence.
