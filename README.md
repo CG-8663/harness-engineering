@@ -182,6 +182,19 @@ or review the [complete sanitized evidence](benchmarks/context-savings/2026-09-2
 A public savings ledger will be added only after a qualified benchmark demonstrates
 realized savings. Until then, no savings are claimed.
 
+### Codex pilot: first-turn benefit is break-even
+
+A controlled Codex CLI pair preserved exact-answer quality and reduced Codex input by
+426 tokens (1.93%). The Jev decision itself used 477 tokens and 826 ms, making the first
+continued turn effectively break-even across the two services. The result supports an
+amortized strategy: compact only when at least two useful continued turns are expected.
+It does not support a production savings claim.
+
+[Review the sanitized Codex pilot](benchmarks/codex-token-burn/2026-09-21-pilot/) and use
+the [numeric-only Codex usage monitor](hooks/codex-usage/) for future paired runs. The
+monitor consumes the official `codex exec --json` stream and never stores prompts,
+messages, transcripts or tool payloads.
+
 ### PR feedback wanted
 
 Please [open a pull request](https://github.com/CG-8663/harness-engineering/pulls) or

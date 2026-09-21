@@ -204,6 +204,9 @@ improve materially.
 - Reject redirects, malformed responses, unknown choices, and low confidence.
 - Make service failure a normal deterministic fallback.
 - Log decisions and token totals, never secrets or raw transcripts.
+- For Codex, pipe the documented `codex exec --json` stream through
+  [`hooks/codex-usage/codex_usage.py`](../hooks/codex-usage/codex_usage.py) to retain
+  numeric usage only. Do not parse private transcript text into a public benchmark.
 - Test the adapter against a disposable session before enabling it globally.
 
 ## Why Choice fits this problem

@@ -27,3 +27,10 @@ Append-only record of material repository changes.
   tasks before publishing a future savings ledger.
 - Added direct links from the README and benchmark explanation to the sanitized Jev
   diagnostic repeat.
+- Ran a controlled Codex pair after a live high-confidence Jev `compact` decision. Exact
+  quality held; Codex input fell 426 tokens (1.93%), while Jev used 477 tokens and 826 ms,
+  leaving the first continued turn effectively break-even. Kept this as pilot evidence,
+  not a savings ledger or production claim.
+- Added a tested numeric-only Codex JSONL usage monitor. It discards prompts, messages,
+  transcripts and tool payloads; 9 monitor tests and 18 classifier tests pass, with 98%
+  stdlib trace coverage for the monitor.

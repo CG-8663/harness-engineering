@@ -19,3 +19,6 @@ eval/*.key
 *.swp
 .idea/
 .vscode/
+
+# local numeric-only harness measurements
+.harness-metrics/

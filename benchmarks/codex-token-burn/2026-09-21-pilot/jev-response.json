@@ -1,0 +1,25 @@
+{
+  "sampled": "2026-09-21T11:05:59.657587+00:00",
+  "client": "codex-project-direct",
+  "latency_ms": 826,
+  "effects_applied": false,
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "context_action": {
+        "type": "choice",
+        "choice": "compact",
+        "confidence": 0.75,
+        "probabilities": {
+          "retain": 0.16,
+          "handoff": 0.0,
+          "compact": 0.84
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 437,
+      "output_tokens": 40
+    }
+  }
+}

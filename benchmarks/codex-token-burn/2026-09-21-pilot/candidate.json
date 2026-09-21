@@ -1,0 +1,18 @@
+{
+  "condition": "jev_approved_compact_context",
+  "codex_cli": "0.155.1",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "answer": {"soft": 49029, "fallback": 65372, "hard": 77824},
+  "quality": "pass_exact_match",
+  "wall_seconds": 17.6,
+  "usage": {
+    "input_tokens": 21663,
+    "cached_input_tokens": 9984,
+    "uncached_input_tokens": 11679,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 20,
+    "reasoning_output_tokens": 0,
+    "total_tokens": 21683
+  }
+}

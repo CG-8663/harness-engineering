@@ -40,3 +40,22 @@ least 20 paired representative tasks before a production savings claim or ledger
 
 The public explanation now links directly to
 `benchmarks/context-savings/2026-09-21-simple/with-jev.json` as the diagnostic repeat.
+
+## 2026-09-21: Codex token-burn pilot
+
+A live Jev Choice on bounded metadata selected `compact` at confidence 0.75. Jev used
+437 input and 40 output tokens with 826 ms client latency. A matched Codex CLI 0.155.1
+pair using `gpt-5.6-luna` at low reasoning effort then returned the exact expected answer
+in both conditions. Full context used 22,089 input and 81 output tokens; compact context
+used 21,663 input and 20 output tokens. Both reported 9,984 cached input tokens.
+
+The gross Codex input reduction was 426 tokens (1.93%). After adding Jev's 477 tokens,
+the combined first-turn token count was only 10 tokens lower, effectively break-even.
+This demonstrates that Jev must amortize its decision over at least two useful continued
+turns at this observed reduction. It is one synthetic pair, so no threshold changed and
+no savings ledger was created.
+
+`hooks/codex-usage/codex_usage.py` now records only numeric fields from the supported
+`codex exec --json` stream. Nine monitor tests and all 18 classifier tests pass; stdlib
+trace reports 98% executable-line coverage for the monitor. Interactive transcript
+parsing was deliberately excluded because it is not a stable public Codex contract.
