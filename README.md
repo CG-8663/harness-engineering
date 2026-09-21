@@ -30,6 +30,14 @@ and which cheap shortcuts you fence off so the agent can't cheat the metric.
 | [`loops/lfd-loop`](loops/lfd-loop) | Loss-Function-Development outer loop: run an agent against a **blind** eval score, fenced by hard time/money limits, with forced entropy to escape local maxima. | ✅ ready |
 | _more coming_ | Add your own — see [CONTRIBUTING](CONTRIBUTING.md). | |
 
+## Context efficiency
+
+The [portable Jev context-budget hook](docs/context-budget-hook.md) shows how to reduce
+repeated agent input tokens without sending prompts or repository content to a routing
+service. Deterministic code owns hard limits and execution; Jev is used only for a typed
+choice inside an ambiguous advisory band. The guide includes a tested Python hook, an
+agent installation prompt, privacy boundaries, and a before-and-after measurement plan.
+
 ## Quick start
 
 ```bash

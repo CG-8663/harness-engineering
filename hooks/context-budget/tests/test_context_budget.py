@@ -3,7 +3,9 @@ import json
 import subprocess
 import sys
 import unittest
+from io import StringIO
 from pathlib import Path
+from unittest import mock
 
 
 HOOK_DIR = Path(__file__).resolve().parents[1]
@@ -129,6 +131,12 @@ class ClassificationTests(unittest.TestCase):
         self.assertEqual("fallback", result["source"])
         self.assertNotIn("offline", json.dumps(result))
 
+    def test_missing_evaluator_uses_fallback(self):
+        result = context_budget.classify(sample(input_tokens=50_000))
+
+        self.assertEqual("retain", result["action"])
+        self.assertEqual("jev_not_configured", result["reason"])
+
     def test_rejects_unknown_input_fields_to_prevent_content_leakage(self):
         with self.assertRaisesRegex(ValueError, "unsupported fields"):
             context_budget.classify(sample(prompt="private source code"))
@@ -136,6 +144,87 @@ class ClassificationTests(unittest.TestCase):
     def test_rejects_invalid_capacity_contract(self):
         with self.assertRaisesRegex(ValueError, "usable ceiling"):
             context_budget.classify(sample(compaction_reserve=130_000))
+
+    def test_rejects_invalid_policy_and_input_types(self):
+        with self.assertRaisesRegex(ValueError, "policy ratios"):
+            context_budget.classify(sample(), policy=context_budget.Policy(soft_ratio=0.9, fallback_ratio=0.8))
+        with self.assertRaisesRegex(ValueError, "confidence floor"):
+            context_budget.classify(sample(), policy=context_budget.Policy(confidence_floor=1.1))
+        with self.assertRaisesRegex(ValueError, "input_tokens"):
+            context_budget.classify(sample(input_tokens=True))
+        with self.assertRaisesRegex(ValueError, "phase must be one of"):
+            context_budget.classify(sample(phase="secret phase notes"))
+        with self.assertRaisesRegex(ValueError, "phase_boundary"):
+            context_budget.classify(sample(phase_boundary="yes"))
+
+    def test_malformed_jev_responses_use_fallback(self):
+        invalid = [
+            {},
+            jev_answer("retain", 0.9),
+            jev_answer("retain", 0.9),
+            jev_answer("retain", 0.9),
+        ]
+        invalid[1]["answers"]["context_action"]["type"] = "score"
+        invalid[2]["answers"]["context_action"]["probabilities"].pop("handoff")
+        invalid[3]["answers"]["context_action"]["probabilities"]["compact"] = -0.1
+
+        for response in invalid:
+            with self.subTest(response=response):
+                result = context_budget.classify(sample(), evaluator=lambda _, value=response: value)
+                self.assertEqual("fallback", result["source"])
+
+
+class JevTransportTests(unittest.TestCase):
+    def test_requires_api_key(self):
+        with self.assertRaisesRegex(ValueError, "TYPESAFE_API_KEY"):
+            context_budget.jev_evaluator("")
+
+    def test_posts_only_bounded_state_to_official_endpoint(self):
+        response_body = json.dumps(jev_answer()).encode("utf-8")
+
+        class Response:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self):
+                return response_body
+
+        class Opener:
+            request = None
+            timeout = None
+
+            def open(self, request, timeout):
+                self.request = request
+                self.timeout = timeout
+                return Response()
+
+        opener = Opener()
+        state = {
+            "pressure_band": "advisory",
+            "turn_band": "16-30",
+            "failure_band": "1",
+            "phase": "implementation",
+            "cache_mode": "warm",
+            "phase_boundary": False,
+        }
+        with mock.patch.object(context_budget.urllib.request, "build_opener", return_value=opener):
+            result = context_budget.jev_evaluator("test-only-key", 3.0)(state)
+
+        sent = json.loads(opener.request.data.decode("utf-8"))
+        self.assertEqual(context_budget.API_URL, opener.request.full_url)
+        self.assertEqual(state, sent["state"])
+        self.assertEqual("jev-latest", sent["model"])
+        self.assertEqual(3.0, opener.timeout)
+        self.assertEqual("compact", result["answers"]["context_action"]["choice"])
+
+    def test_redirect_handler_refuses_redirect(self):
+        handler = context_budget._NoRedirect()
+        self.assertIsNone(handler.redirect_request(None, None, 302, "redirect", {}, "https://example.test"))
 
 
 class CommandLineTests(unittest.TestCase):
@@ -165,6 +254,21 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(2, completed.returncode)
         error = json.loads(completed.stderr)
         self.assertEqual("invalid_input", error["error"])
+
+    def test_main_reports_missing_key_without_reading_network(self):
+        stdin = StringIO(json.dumps(sample()))
+        stdout = StringIO()
+        stderr = StringIO()
+        with mock.patch.object(context_budget.sys, "stdin", stdin), mock.patch.object(
+            context_budget.sys, "stdout", stdout
+        ), mock.patch.object(context_budget.sys, "stderr", stderr), mock.patch.dict(
+            context_budget.os.environ, {}, clear=True
+        ):
+            code = context_budget.main(["--use-jev"])
+
+        self.assertEqual(2, code)
+        self.assertEqual("invalid_input", json.loads(stderr.getvalue())["error"])
+        self.assertEqual("", stdout.getvalue())
 
 
 if __name__ == "__main__":
