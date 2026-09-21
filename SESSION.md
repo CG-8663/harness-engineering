@@ -16,3 +16,7 @@ privacy, version, measurement, and rollback evidence in feedback.
 Public positioning is now explicit: Harness Engineering with Jev for efficient agent
 usage. Jev provides a bounded typed judgment while deterministic code and the native
 harness retain control.
+
+Step 3 now includes the important agent request inline instead of exposing only harness
+commands. The prompt covers native hook discovery, deterministic ownership, Jev privacy,
+test-first adapter work, no-spend validation, measurement, reversibility, and scope.

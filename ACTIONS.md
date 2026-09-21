@@ -12,3 +12,5 @@ Append-only record of material repository changes.
   measurable savings bands, and a structured request for issue and pull-request feedback.
 - Clarified that the project is a harness control layer around existing agents, not a
   model, proxy, agent replacement, or context executor.
+- Added the exact cross-harness installation request directly to README step 3 so users
+  can review what the agent is being asked to change before running it.

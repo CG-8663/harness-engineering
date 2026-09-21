@@ -82,6 +82,25 @@ the `npx` command, do not also install the Claude plugin for the same project.
 Complete the TypeSafe installation in step 2 first. The same reviewed task prompt then
 works across harnesses.
 
+**What to ask the agent:**
+
+```text
+Using the TypeSafe skill, install this repository's context-budget hook for the active
+agent harness. First inspect the installed harness version and its native idle, stop, or
+pre-request hook support. Keep context limits, privacy checks, hard compaction, fallbacks,
+and execution deterministic in code. Use Jev only in the ambiguous advisory band for the
+typed retain | compact | handoff Choice. Never send prompts, messages, source code,
+commands, paths, credentials, or transcripts to Jev. Add adapter tests first, run the
+existing test suite, and complete a no-spend dry run before any live request. Measure
+baseline and candidate median/p95 token usage and task quality across at least 20
+representative tasks. Preserve existing configuration, make changes reversible, report
+rollback steps, and ask before changing global configuration or unrelated projects.
+```
+
+The commands below send the fuller reviewed version of this request from
+[`AGENT_PROMPT.md`](hooks/context-budget/AGENT_PROMPT.md), so users do not need to retype
+it.
+
 #### Claude Code
 
 ```bash
