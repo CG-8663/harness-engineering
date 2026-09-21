@@ -17,16 +17,18 @@ Describe the harness, hook, threshold, adapter, prompt, or documentation change.
 
 ## Savings evidence
 
-- [ ] `docs/context-savings.md` is updated in this PR.
 - [ ] Baseline and candidate use the same model, task set, tools, and scoring method.
 - [ ] The report includes task count, input-token p50/p95, quality, and harness/model versions.
-- [ ] Any unmeasured result is labeled `benchmark pending`, not presented as a saving.
+- [ ] A savings ledger is published or updated only if at least 20 paired tasks show
+      realized savings without an unacceptable quality regression.
+- [ ] Zero-saving, negative, estimated, or unmeasured results are kept as safety evidence
+      and are not presented in a savings ledger.
 
 Evidence or benchmark path:
 
 Quality result and accepted tolerance:
 
-Measured median input-token saving, or `not claimed`:
+Measured median input-token saving, or `not realized`:
 
 ## Privacy
 

@@ -32,3 +32,8 @@ mode retained in 0.07 seconds. The live Jev path retained through fallback in 0.
 An exact diagnostic repeat returned `compact` at probability 0.69 and confidence 0.53,
 using 438 input and 40 output tokens with 864 ms client latency. Because confidence was
 below 0.65 and no compaction executed, the published observed saving is 0 percent.
+
+The user clarified that a public savings ledger must exist only after savings are
+realized. The zero-saving smoke test remains published as safety evidence in the README
+and benchmark folder. The empty ledger was removed, and the repository now requires at
+least 20 paired representative tasks before a production savings claim or ledger.

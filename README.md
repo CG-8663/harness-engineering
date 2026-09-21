@@ -167,15 +167,19 @@ Static cleanup often matters more than routing. Measure three stages separately:
 Do not claim a saving from one run. Use at least 20 representative tasks per
 configuration and reject any result that lowers the task success rate beyond your chosen
 tolerance. See the [full implementation and measurement guide](docs/context-budget-hook.md).
-Measured results and benchmark-pending releases are published in the
-[Jev context and compaction savings ledger](docs/context-savings.md).
-
 **Latest smoke test:** one identical advisory-band sample produced `retain` both without
 and with Jev. Jev preferred `compact`, but confidence was 0.53 and the 0.65 safety gate
-rejected it. Observed compaction savings were therefore 0 percent, with 478 Jev API tokens
-and about 0.88 seconds of additional wall time. See the
-[sanitized evidence](benchmarks/context-savings/2026-09-21-simple/). This is one
-observation, not a production savings claim.
+rejected it.
+
+The hook correctly rejected the uncertain recommendation. No compaction occurred, so
+observed savings were 0 percent, with approximately 0.88 seconds additional decision
+latency. This is a useful safety result, but only one observation. We require at least 20
+paired representative tasks before changing the threshold or claiming production
+savings.
+
+See the [sanitized evidence](benchmarks/context-savings/2026-09-21-simple/). A public
+savings ledger will be added only after a qualified benchmark demonstrates realized
+savings. Until then, no savings are claimed.
 
 ### PR feedback wanted
 

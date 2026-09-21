@@ -22,3 +22,6 @@ Append-only record of material repository changes.
   were `retain`; the Jev diagnostic preferred `compact` at 0.53 confidence, below the
   0.65 gate. Published the 0 percent observed saving and decision overhead as an
   observation, not a production claim.
+- Removed the public savings ledger at the user's direction because savings were not
+  realized. Kept the zero-saving result as safety evidence and require at least 20 paired
+  tasks before publishing a future savings ledger.

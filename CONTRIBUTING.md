@@ -52,6 +52,8 @@ Add a row to the table in the top-level [`README.md`](README.md) so people can f
 
 Read `AGENTS.md` before changing the hook, adapters, thresholds, installation prompt, or
 measurement claims. Jev must remain the first intelligent hook after local deterministic
-privacy and hard-limit checks. Update `docs/context-savings.md` in the same pull request,
-including benchmark-pending changes. Use the pull-request checklist and never claim token
-savings without paired task and quality evidence.
+privacy and hard-limit checks. Publish or update a savings ledger only after at least 20
+paired representative tasks demonstrate realized savings with acceptable quality. Keep
+zero-saving smoke tests as safety evidence rather than a savings claim. Use the
+pull-request checklist and never claim token savings without paired task and quality
+evidence.

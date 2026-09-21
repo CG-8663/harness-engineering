@@ -26,15 +26,17 @@ to Jev. Jev advises; deterministic code and the native harness control side effe
 For every material update:
 
 - update the implementation guide and README when behavior or setup changes;
-- update `docs/context-savings.md` in the same commit;
-- publish only measured savings with baseline and candidate evidence;
+- publish a savings ledger only after a qualified benchmark demonstrates realized
+  savings with baseline and candidate evidence;
+- before savings are realized, keep zero-saving and negative observations in sanitized
+  benchmark evidence and describe them explicitly as safety results, not savings;
 - record task count, median and p95 input tokens, quality result, harness/model versions,
   and the evidence location;
-- mark results `benchmark pending` when paired measurements do not exist;
+- require at least 20 representative paired tasks before changing thresholds or making a
+  production savings claim;
 - run the relevant tests and record the result in `ACTIONS.md` and `SESSION.md`;
 - keep changes reversible and never commit credentials or private prompt content;
 - keep the configured GitHub branch current after publication has been authorized.
 
-Documentation-only changes still receive a savings-ledger entry when they affect public
-claims or measurement guidance. Never turn an estimate or a single run into a savings
-claim.
+Do not publish an empty or zero-saving savings ledger. Never turn an estimate, a single
+run, or a rejected compaction into a savings claim.

@@ -28,9 +28,10 @@ Requirements:
 10. Register Jev as the first semantic or model-backed context hook. Only local
     deterministic schema validation, privacy filtering, arithmetic, and hard-limit checks
     may run before it.
-11. Update `docs/context-savings.md` with paired measurements, or retain `benchmark
-    pending` when no valid comparison exists. Never publish an estimated saving as
-    measured.
+11. Publish a savings ledger only after at least 20 paired representative tasks show
+    realized savings without an unacceptable quality regression. Keep earlier smoke tests
+    as sanitized safety evidence, and never publish an estimated, zero, or rejected
+    compaction result as a saving.
 
 First identify unused skills, commands, instruction duplication, and MCP schemas in this
 project's startup scope. Narrow project-local configuration reversibly before adding the
