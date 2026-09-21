@@ -177,9 +177,10 @@ latency. This is a useful safety result, but only one observation. We require at
 paired representative tasks before changing the threshold or claiming production
 savings.
 
-See the [sanitized evidence](benchmarks/context-savings/2026-09-21-simple/). A public
-savings ledger will be added only after a qualified benchmark demonstrates realized
-savings. Until then, no savings are claimed.
+[See the diagnostic repeat](benchmarks/context-savings/2026-09-21-simple/with-jev.json)
+or review the [complete sanitized evidence](benchmarks/context-savings/2026-09-21-simple/).
+A public savings ledger will be added only after a qualified benchmark demonstrates
+realized savings. Until then, no savings are claimed.
 
 ### PR feedback wanted
 

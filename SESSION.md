@@ -37,3 +37,6 @@ The user clarified that a public savings ledger must exist only after savings ar
 realized. The zero-saving smoke test remains published as safety evidence in the README
 and benchmark folder. The empty ledger was removed, and the repository now requires at
 least 20 paired representative tasks before a production savings claim or ledger.
+
+The public explanation now links directly to
+`benchmarks/context-savings/2026-09-21-simple/with-jev.json` as the diagnostic repeat.

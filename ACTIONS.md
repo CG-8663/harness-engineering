@@ -25,3 +25,5 @@ Append-only record of material repository changes.
 - Removed the public savings ledger at the user's direction because savings were not
   realized. Kept the zero-saving result as safety evidence and require at least 20 paired
   tasks before publishing a future savings ledger.
+- Added direct links from the README and benchmark explanation to the sanitized Jev
+  diagnostic repeat.

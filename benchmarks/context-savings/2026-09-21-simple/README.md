@@ -15,7 +15,7 @@ same sanitized state and Choice captured the diagnostic evidence: Jev 1.13.0 pre
 `compact` with probability 0.69, but confidence was 0.53. The production confidence floor
 is 0.65, so the hook correctly rejected automatic compaction and retained the session.
 The diagnostic request used 438 input tokens and 40 output tokens with 864 ms measured
-client latency.
+client latency. [See the diagnostic repeat](with-jev.json).
 
 ## Interpretation
 
