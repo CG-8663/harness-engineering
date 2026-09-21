@@ -1,0 +1,16 @@
+{
+  "mode": "deterministic_only",
+  "sample": "input.json",
+  "action": "retain",
+  "source": "fallback",
+  "reason": "jev_not_configured",
+  "telemetry": {
+    "soft": 49029,
+    "fallback": 65372,
+    "hard": 77824
+  },
+  "wall_seconds": 0.07,
+  "jev_input_tokens": 0,
+  "jev_output_tokens": 0,
+  "effects_applied": false
+}

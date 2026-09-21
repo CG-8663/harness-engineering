@@ -1,0 +1,11 @@
+{
+  "input_tokens": 55000,
+  "context_limit": 131072,
+  "reply_reserve": 4096,
+  "compaction_reserve": 49152,
+  "turn_count": 24,
+  "failed_attempts": 1,
+  "phase": "implementation",
+  "cache_mode": "warm",
+  "phase_boundary": false
+}

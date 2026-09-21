@@ -1,0 +1,22 @@
+{
+  "model": "jev-latest",
+  "state": {
+    "pressure_band": "advisory",
+    "turn_band": "16-30",
+    "failure_band": "1",
+    "phase": "implementation",
+    "cache_mode": "warm",
+    "phase_boundary": false
+  },
+  "questions": {
+    "context_action": {
+      "type": "choice",
+      "instructions": "Choose the lowest-cost safe context action for the next agent turn using only the bounded telemetry in state. Do not infer missing content.",
+      "criteria": {
+        "retain": "Keep the current session because continuity is worth its context cost.",
+        "compact": "Summarize verified state, discard replaceable history, and continue this phase.",
+        "handoff": "Start a fresh session from a durable handoff, only at an explicit phase boundary."
+      }
+    }
+  }
+}

@@ -20,6 +20,20 @@ the savings calculation.
 | Date | Change | Harness and model | Tasks | Baseline input p50 / p95 | Candidate input p50 / p95 | Median saving | Quality result | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
 | 2026-09-21 | Portable hook, multi-harness setup, and measurement policy | Not yet benchmarked | 0 | Not available | Not available | Not claimed | 18 tests pass; no paired task eval | Benchmark pending |
+| 2026-09-21 | One advisory-band smoke test, without and with Jev | Python hook; Jev 1.13.0 | 1 | 55,000 / not available | 55,000 / not available | 0% observed | Same final `retain` action; no compaction executed | Observation only |
+
+## Latest smoke-test result
+
+The [one-sample evidence](../benchmarks/context-savings/2026-09-21-simple/) compares the
+same 55,000-token advisory state. Without Jev, deterministic fallback returned `retain` in
+0.07 seconds. The live Jev path also returned `retain` in 0.95 seconds because the typed
+response did not pass the confidence gate.
+
+A diagnostic repeat showed Jev preferred `compact` with probability 0.69 and confidence
+0.53. The 0.65 production floor rejected that advice. The diagnostic request used 438
+input tokens and 40 output tokens with 864 ms measured client latency. No compaction ran,
+so observed compaction savings were 0 percent. This single sample is not a production
+savings benchmark.
 
 ## Required calculation
 

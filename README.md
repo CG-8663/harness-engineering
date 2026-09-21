@@ -170,6 +170,13 @@ tolerance. See the [full implementation and measurement guide](docs/context-budg
 Measured results and benchmark-pending releases are published in the
 [Jev context and compaction savings ledger](docs/context-savings.md).
 
+**Latest smoke test:** one identical advisory-band sample produced `retain` both without
+and with Jev. Jev preferred `compact`, but confidence was 0.53 and the 0.65 safety gate
+rejected it. Observed compaction savings were therefore 0 percent, with 478 Jev API tokens
+and about 0.88 seconds of additional wall time. See the
+[sanitized evidence](benchmarks/context-savings/2026-09-21-simple/). This is one
+observation, not a production savings claim.
+
 ### PR feedback wanted
 
 Please [open a pull request](https://github.com/CG-8663/harness-engineering/pulls) or

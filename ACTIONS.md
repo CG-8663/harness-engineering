@@ -18,3 +18,7 @@ Append-only record of material repository changes.
   after local deterministic safety checks.
 - Added a public context-savings ledger and pull-request checklist. No paired production
   benchmark exists yet, so savings remain explicitly unclaimed and benchmark pending.
+- Ran one identical advisory-band sample without and with live Jev. Both final actions
+  were `retain`; the Jev diagnostic preferred `compact` at 0.53 confidence, below the
+  0.65 gate. Published the 0 percent observed saving and decision overhead as an
+  observation, not a production claim.

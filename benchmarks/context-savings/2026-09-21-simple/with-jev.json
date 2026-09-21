@@ -1,0 +1,31 @@
+{
+  "mode": "live_jev",
+  "sample": "input.json",
+  "hook_result": {
+    "action": "retain",
+    "source": "fallback",
+    "reason": "jev_unavailable_invalid_or_uncertain",
+    "telemetry": {
+      "soft": 49029,
+      "fallback": 65372,
+      "hard": 77824
+    },
+    "wall_seconds": 0.95
+  },
+  "diagnostic_repeat": {
+    "model": "jev-1.13.0",
+    "choice": "compact",
+    "confidence": 0.53,
+    "probabilities": {
+      "retain": 0.31,
+      "handoff": 0.0,
+      "compact": 0.69
+    },
+    "latency_ms": 864,
+    "input_tokens": 438,
+    "output_tokens": 40,
+    "effects_applied": false
+  },
+  "observed_compaction_saving_percent": 0,
+  "status": "observation_only"
+}
