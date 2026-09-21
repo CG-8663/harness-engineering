@@ -30,15 +30,130 @@ and which cheap shortcuts you fence off so the agent can't cheat the metric.
 | [`loops/lfd-loop`](loops/lfd-loop) | Loss-Function-Development outer loop: run an agent against a **blind** eval score, fenced by hard time/money limits, with forced entropy to escape local maxima. | ✅ ready |
 | _more coming_ | Add your own — see [CONTRIBUTING](CONTRIBUTING.md). | |
 
-## Context efficiency
+## Cut agent context usage
 
-The [portable Jev context-budget hook](docs/context-budget-hook.md) shows how to reduce
-repeated agent input tokens without sending prompts or repository content to a routing
-service. Deterministic code owns hard limits and execution; Jev is used only for a typed
-choice inside an ambiguous advisory band. The guide includes a tested Python hook, an
-agent installation prompt, privacy boundaries, and a before-and-after measurement plan.
+The [portable Jev context-budget hook](docs/context-budget-hook.md) helps Claude Code,
+Grok, OpenCode, Codex, and other agent harnesses decide when to retain a session, compact
+it, or create a clean handoff.
 
-## Quick start
+Deterministic code owns hard limits, privacy, validation, and execution. Jev sees only six
+small telemetry buckets and supplies one typed choice inside the ambiguous middle band.
+Prompts, transcripts, source code, paths, command text, and credentials remain local.
+
+### 1. Clone the project
+
+```bash
+git clone https://github.com/CG-8663/harness-engineering.git
+cd harness-engineering
+```
+
+### 2. Install the TypeSafe skill once
+
+Use the portable installer before running any of the agent commands below:
+
+```bash
+npx skills add typesafe-ai/skills --skill typesafe-ai
+```
+
+Select Claude Code, Grok, OpenCode, Codex, or your other target agent when prompted. Keep
+the installation project-local unless you deliberately want the skill loaded in every
+project.
+
+Claude Code users may use the official plugin instead of the `npx` route:
+
+```bash
+claude plugin marketplace add typesafe-ai/skills
+claude plugin install typesafe@typesafe-ai
+```
+
+Use one installation method so the agent does not load duplicate skill copies. If you use
+the `npx` command, do not also install the Claude plugin for the same project.
+
+### 3. Ask your preferred agent to install the hook
+
+Complete the TypeSafe installation in step 2 first. The same reviewed task prompt then
+works across harnesses.
+
+#### Claude Code
+
+```bash
+claude -p < hooks/context-budget/AGENT_PROMPT.md
+```
+
+Claude users can invoke the installed skill directly with `/typesafe:typesafe-ai` when
+working interactively.
+
+#### Grok
+
+```bash
+grok --cwd . --prompt-file hooks/context-budget/AGENT_PROMPT.md
+```
+
+#### OpenCode
+
+```bash
+opencode run -f hooks/context-budget/AGENT_PROMPT.md \
+  "Use the TypeSafe skill and complete the attached context-budget installation task."
+```
+
+#### Codex
+
+```bash
+codex exec -C . - < hooks/context-budget/AGENT_PROMPT.md
+```
+
+The agent should inspect the current harness version, add the smallest native adapter,
+run the existing tests, perform a no-spend dry run, and report rollback instructions.
+It must ask before changing global configuration or unrelated projects.
+
+### 4. Judge the savings
+
+Always compare representative completed tasks with the model, repository revision,
+tools, and task set held constant. Track median and p95 input tokens, output tokens,
+latency, task success, compactions, handoffs, and context-loss regressions.
+
+Use these evaluation bands as engineering guidance, not promised savings:
+
+| Reduction in median input tokens per completed task | Interpretation |
+| --- | --- |
+| Less than 10% | Marginal. Simplify the setup or remove the hook. |
+| 10% to 25% | Useful when quality and latency do not regress. |
+| 25% to 40% | Strong result. Confirm the same tasks still pass. |
+| More than 40% | Excellent if genuine, but audit carefully for missing context or an unusually bloated baseline. |
+
+Calculate the observed reduction with:
+
+```text
+savings % = 100 * (baseline median input - candidate median input) / baseline median input
+```
+
+Static cleanup often matters more than routing. Measure three stages separately:
+
+1. Existing harness configuration.
+2. Project-scoped skills, commands, instructions, and MCP servers only.
+3. The scoped configuration plus the context-budget hook.
+
+Do not claim a saving from one run. Use at least 20 representative tasks per
+configuration and reject any result that lowers the task success rate beyond your chosen
+tolerance. See the [full implementation and measurement guide](docs/context-budget-hook.md).
+
+### PR feedback wanted
+
+Please [open a pull request](https://github.com/CG-8663/harness-engineering/pulls) or
+[start an issue](https://github.com/CG-8663/harness-engineering/issues) if you can improve:
+
+- native Claude Code, Grok, or OpenCode adapters;
+- reliable token collection across harness versions;
+- Windows and Linux installation flows;
+- privacy and failure-mode tests;
+- threshold calibration from real task suites;
+- before-and-after charts that include quality as well as token usage.
+
+For measurement PRs, include the harness and model versions, context limit, task count,
+baseline and candidate median/p95 values, quality metric, configuration diff, and rollback
+steps. Never include API keys, private transcripts, proprietary source, or raw prompts.
+
+## Run the LFD loop
 
 ```bash
 git clone https://github.com/cg-8663/harness-engineering.git

@@ -8,3 +8,5 @@ Append-only record of material repository changes.
   optional confidence-gated TypeSafe Jev Choice.
 - Added a public implementation guide, reusable agent prompt, and TDD evidence report.
 - Linked the guide from the repository README.
+- Expanded the README with verified Claude Code, Grok, OpenCode, and Codex launch flows,
+  measurable savings bands, and a structured request for issue and pull-request feedback.
